@@ -9,6 +9,8 @@
 #import "kiwi.h"
 #import "JPButtonGroup.h"
 
+@class UIButton;
+
 SPEC_BEGIN(JPButtonGroupSpec)
 
 describe(@"JPButtonGroupSpec", ^{
@@ -27,14 +29,18 @@ describe(@"JPButtonGroupSpec", ^{
         });
         
         context(@"add buttons", ^{
-            __block NSObject *inputButton1 = nil;
-            __block NSObject *inputButton2 = nil;
-            __block NSObject *inputButton3 = nil;
+            __block KWMock *inputButton1 = nil;
+            __block KWMock *inputButton2 = nil;
+            __block KWMock *inputButton3 = nil;
             
             beforeEach(^{
-                inputButton1 = [NSObject mock];
-                inputButton2 = [NSObject mock];
-                inputButton3 = [NSObject mock];
+                inputButton1 = [KWMock mock];
+                inputButton2 = [KWMock mock];
+                inputButton3 = [KWMock mock];
+                
+                [inputButton1 stub:@selector(setSelected:)];
+                [inputButton2 stub:@selector(setSelected:)];
+                [inputButton3 stub:@selector(setSelected:)];
                 
                 [jpButtonGroup.buttonsArray addObject:inputButton1];
                 [jpButtonGroup.buttonsArray addObject:inputButton2];
