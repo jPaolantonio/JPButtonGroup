@@ -17,6 +17,7 @@ describe(@"JPButtonGroupSpec", ^{
         __block JPButtonGroup *jpButtonGroup = nil; // object under test
         
         beforeEach(^{
+            jpButtonGroup = nil;
             jpButtonGroup = [[JPButtonGroup alloc] init];
         });
         
@@ -25,12 +26,16 @@ describe(@"JPButtonGroupSpec", ^{
             [jpButtonGroup.buttonsArray shouldNotBeNil];
         });
         
-        context(@"input buttons", ^{
-            __block NSObject *inputButton1 = [NSObject mock];
-            __block NSObject *inputButton2 = [NSObject mock];
-            __block NSObject *inputButton3 = [NSObject mock];
+        context(@"add buttons", ^{
+            __block NSObject *inputButton1 = nil;
+            __block NSObject *inputButton2 = nil;
+            __block NSObject *inputButton3 = nil;
             
             beforeEach(^{
+                inputButton1 = [NSObject mock];
+                inputButton2 = [NSObject mock];
+                inputButton3 = [NSObject mock];
+                
                 [jpButtonGroup.buttonsArray addObject:inputButton1];
                 [jpButtonGroup.buttonsArray addObject:inputButton2];
                 [jpButtonGroup.buttonsArray addObject:inputButton3];
@@ -50,8 +55,11 @@ describe(@"JPButtonGroupSpec", ^{
                         [jpButtonGroup selectButton:inputButton2];
                     });
                     
-                    it (@"should return one selected buttons", ^{
-                        [[[jpButtonGroup getSelectedButtons] should] containObjects:inputButton2, nil];
+                    it (@"should return one selected button", ^{
+                        [[[jpButtonGroup getSelectedButtons] should] haveCountOf:1];
+                        [[[jpButtonGroup getSelectedButtons] should] contain:inputButton2];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton1];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton3];
                     });
                 });
                 
@@ -62,8 +70,10 @@ describe(@"JPButtonGroupSpec", ^{
                     });
                     
                     it (@"should return one selected buttons", ^{
-                        [[[jpButtonGroup getSelectedButtons] should] containObjects:inputButton2, nil];
-                        [[[jpButtonGroup getSelectedButtons] shouldNot] containObjects:inputButton1, inputButton3, nil];
+                        [[[jpButtonGroup getSelectedButtons] should] haveCountOf:1];
+                        [[[jpButtonGroup getSelectedButtons] should] contain:inputButton2];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton1];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton3];
                     });
                 });
             });
@@ -75,11 +85,14 @@ describe(@"JPButtonGroupSpec", ^{
                 
                 context(@"select one buttons", ^{
                     beforeEach(^{
-                        [jpButtonGroup selectButton:inputButton2];
+                        [jpButtonGroup selectButton:inputButton3];
                     });
                     
                     it (@"should return one selected buttons", ^{
-                        [[[jpButtonGroup getSelectedButtons] should] containObjects:inputButton2, nil];
+                        [[[jpButtonGroup getSelectedButtons] should] haveCountOf:1];
+                        [[[jpButtonGroup getSelectedButtons] should] contain:inputButton3];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton1];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton2];
                     });
                 });
                 
@@ -90,8 +103,10 @@ describe(@"JPButtonGroupSpec", ^{
                     });
                     
                     it (@"should return one selected buttons", ^{
-                        [[[jpButtonGroup getSelectedButtons] should] containObjects:inputButton2, inputButton3, nil];
-                        [[[jpButtonGroup getSelectedButtons] shouldNot] containObjects:inputButton1, nil];
+                        [[[jpButtonGroup getSelectedButtons] should] haveCountOf:2];
+                        [[[jpButtonGroup getSelectedButtons] should] contain:inputButton2];
+                        [[[jpButtonGroup getSelectedButtons] should] contain:inputButton3];
+                        [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton1];
                     });
                 });
             });
