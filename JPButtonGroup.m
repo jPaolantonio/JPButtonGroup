@@ -36,7 +36,13 @@ static char JPButtonSelectedKey;
     
     for (UIButton *arrayButton in self.buttonsArray) {
         if (arrayButton == button) {
-            objc_setAssociatedObject(arrayButton, &JPButtonSelectedKey,  [NSNumber numberWithBool:YES], OBJC_ASSOCIATION_COPY_NONATOMIC);
+            NSNumber *number = (NSNumber *)objc_getAssociatedObject(arrayButton, &JPButtonSelectedKey);
+            if ([number boolValue]) {
+                objc_removeAssociatedObjects(arrayButton);
+            }
+            else {
+                objc_setAssociatedObject(arrayButton, &JPButtonSelectedKey,  [NSNumber numberWithBool:YES], OBJC_ASSOCIATION_COPY_NONATOMIC);
+            }
         }
     }
 }

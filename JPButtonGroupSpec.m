@@ -126,6 +126,24 @@ describe(@"JPButtonGroupSpec", ^{
                     [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton3];
                 });
             });
+            
+            context(@"select and deselect", ^{
+                beforeEach(^{
+                    jpButtonGroup.allowsMultipleSelection = YES;
+                    
+                    [jpButtonGroup selectButton:inputButton1];
+                    [jpButtonGroup selectButton:inputButton2];
+                    [jpButtonGroup selectButton:inputButton3];
+                    [jpButtonGroup selectButton:inputButton2];
+                });
+                
+                it (@"should have nothing selected", ^{
+                    [[[jpButtonGroup getSelectedButtons] should] haveCountOf:2];
+                    [[[jpButtonGroup getSelectedButtons] should] contain:inputButton1];
+                    [[[jpButtonGroup getSelectedButtons] should] contain:inputButton3];
+                    [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton2];
+                });
+            });
         });
     });
 });
