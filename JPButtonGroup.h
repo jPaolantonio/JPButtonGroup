@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface JPButtonGroup : NSObject
+
+@property (strong, nonatomic) NSMutableArray *buttonsArray;
+@property BOOL allowsMultipleSelection;
+
+- (void)selectButton:(NSObject *)button;
+- (NSArray *)getSelectedButtons;
 
 @end
