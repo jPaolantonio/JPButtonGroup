@@ -23,11 +23,15 @@ static char JPButtonSelectedKey;
     return self;
 }
 
+- (void)clearSelections {
+    for (UIButton *arrayButton in self.buttonsArray) {
+        objc_removeAssociatedObjects(arrayButton);
+    }
+}
+
 - (void)selectButton:(UIButton *)button {
     if (!self.allowsMultipleSelection) {
-        for (UIButton *arrayButton in self.buttonsArray) {
-            objc_removeAssociatedObjects(arrayButton);
-        }
+        [self clearSelections];
     }
     
     for (UIButton *arrayButton in self.buttonsArray) {

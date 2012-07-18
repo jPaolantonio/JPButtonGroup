@@ -110,6 +110,22 @@ describe(@"JPButtonGroupSpec", ^{
                     });
                 });
             });
+            
+            context(@"clear selections", ^{
+                beforeEach(^{
+                    [jpButtonGroup selectButton:inputButton3];
+                    [jpButtonGroup selectButton:inputButton2];
+                    
+                    [jpButtonGroup clearSelections];
+                });
+                
+                it (@"should have nothing selected", ^{
+                    [[[jpButtonGroup getSelectedButtons] should] haveCountOf:0];
+                    [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton1];
+                    [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton2];
+                    [[[jpButtonGroup getSelectedButtons] shouldNot] contain:inputButton3];
+                });
+            });
         });
     });
 });

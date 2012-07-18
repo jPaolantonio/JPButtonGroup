@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *buttonsArray;
 @property BOOL allowsMultipleSelection;
 
+- (void)clearSelections;
 - (void)selectButton:(NSObject *)button;
 - (NSArray *)getSelectedButtons;
 
