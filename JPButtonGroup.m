@@ -12,8 +12,6 @@
 static char JPButtonSelectedKey;
 
 @implementation JPButtonGroup
-@synthesize buttonsArray;
-@synthesize allowsMultipleSelection;
 
 - (id)init {
     if (self == [super init]) {
