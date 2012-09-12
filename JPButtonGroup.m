@@ -16,7 +16,7 @@ static char JPButtonSelectedKey;
 @synthesize allowsMultipleSelection;
 
 - (id)init {
-    if (self == [super init]) {
+    if (self = [super init]) {
         self.buttonsArray = [[NSMutableArray alloc] init];
     }
     
