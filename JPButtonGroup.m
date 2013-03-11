@@ -11,6 +11,10 @@
 
 static char JPButtonSelectedKey;
 
+@interface JPButtonGroup ()
+@property (strong, nonatomic) NSMutableArray *buttonsArray;
+@end
+
 @implementation JPButtonGroup
 
 - (id)init {
@@ -26,6 +30,10 @@ static char JPButtonSelectedKey;
         objc_removeAssociatedObjects(arrayButton);
         arrayButton.selected = NO;
     }
+}
+
+- (void)addButton:(UIButton *)button {
+    [self.buttonsArray addObject:button];
 }
 
 - (void)selectButton:(UIButton *)button {

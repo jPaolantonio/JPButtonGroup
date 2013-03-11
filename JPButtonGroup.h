@@ -11,10 +11,10 @@
 
 @interface JPButtonGroup : NSObject
 
-@property (strong, nonatomic) NSMutableArray *buttonsArray;
 @property BOOL allowsMultipleSelection;
 
 - (void)clearSelections;
+- (void)addButton:(UIButton *)button;
 - (void)selectButton:(NSObject *)button;
 - (NSArray *)getSelectedButtons;
 

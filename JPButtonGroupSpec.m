@@ -25,30 +25,25 @@ describe(@"JPButtonGroupSpec", ^{
         
         it(@"should be initialized", ^{
             [jpButtonGroup shouldNotBeNil];
-            [jpButtonGroup.buttonsArray shouldNotBeNil];
         });
         
         context(@"add buttons", ^{
-            __block KWMock *inputButton1 = nil;
-            __block KWMock *inputButton2 = nil;
-            __block KWMock *inputButton3 = nil;
+            __block id inputButton1 = nil;
+            __block id inputButton2 = nil;
+            __block id inputButton3 = nil;
             
             beforeEach(^{
-                inputButton1 = [KWMock mock];
-                inputButton2 = [KWMock mock];
-                inputButton3 = [KWMock mock];
+                inputButton1 = [KWMock mockForClass:[UIButton class]];
+                inputButton2 = [KWMock mockForClass:[UIButton class]];
+                inputButton3 = [KWMock mockForClass:[UIButton class]];
                 
                 [inputButton1 stub:@selector(setSelected:)];
                 [inputButton2 stub:@selector(setSelected:)];
                 [inputButton3 stub:@selector(setSelected:)];
                 
-                [jpButtonGroup.buttonsArray addObject:inputButton1];
-                [jpButtonGroup.buttonsArray addObject:inputButton2];
-                [jpButtonGroup.buttonsArray addObject:inputButton3];
-            });
-            
-            it (@"should have multiple buttons", ^{
-                [[jpButtonGroup.buttonsArray should] haveCountOf:3];
+                [jpButtonGroup addButton:inputButton1];
+                [jpButtonGroup addButton:inputButton2];
+                [jpButtonGroup addButton:inputButton3];
             });
             
             context(@"allow single selections", ^{
