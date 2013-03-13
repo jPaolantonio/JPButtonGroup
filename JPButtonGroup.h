@@ -16,6 +16,7 @@
 - (void)clearSelections;
 - (void)addButton:(UIButton *)button;
 - (void)selectButton:(NSObject *)button;
+- (void)selectButtonWithTag:(NSInteger)tag;
 - (NSArray *)getSelectedButtons;
 
 @end

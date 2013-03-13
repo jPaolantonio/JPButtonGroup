@@ -56,6 +56,15 @@ static char JPButtonSelectedKey;
     }
 }
 
+- (void)selectButtonWithTag:(NSInteger)tag {
+    for (UIButton *arrayButton in self.buttonsArray) {
+        if (arrayButton.tag == tag) {
+            [self selectButton:arrayButton];
+            return;
+        }
+    }
+}
+
 - (NSArray *)getSelectedButtons {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
